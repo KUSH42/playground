@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'playground';
+  settings = {
+    expanded: true
+  };
+
+  public log() {
+    console.log(this.settings.expanded);
+  }
 }
