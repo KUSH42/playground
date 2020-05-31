@@ -5,9 +5,15 @@
 
 <mat-sidenav-container (open)="this.log()" class="sidenav">
   <mat-sidenav #sidenav mode="side" [(opened)]="this.settings.expanded"
-    >Start</mat-sidenav
+    >
+    <span>Playground!</span>
+    <mat-nav-list>
+      <a mat-list-item routerLink='/particles-connect' routerLinkActive="active">Particles</a>
+      <a mat-list-item routerLink='/css-snippets' routerLinkActive="active">CSS-Snippets</a>
+    </mat-nav-list></mat-sidenav
   >
   <section>Main</section>
+  <router-outlet></router-outlet>
   <p>
     <button
       mat-icon-button
