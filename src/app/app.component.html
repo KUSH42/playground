@@ -3,42 +3,40 @@
   rel="stylesheet"
 />
 
-<mat-sidenav-container (open)="this.log()" class="sidenav">
-  <mat-sidenav #sidenav mode="side" [(opened)]="this.settings.expanded"
+<mat-sidenav-container [hasBackdrop]=false (open)="this.log()" class="sidenav">
+  <mat-sidenav #sidenav mode="push" [(opened)]="this.settings.expanded"
     >
     <span>Playground!</span>
     <mat-nav-list>
-      <a mat-list-item routerLink='/particles-connect' routerLinkActive="active">Particles</a>
-      <a mat-list-item routerLink='/css-snippets' routerLinkActive="active">CSS-Snippets</a>
-    </mat-nav-list></mat-sidenav
+      <a mat-list-item routerLink='/particles-connect' routerLinkActive="router-active">Particles</a>
+      <a mat-list-item routerLink='/css-snippets' routerLinkActive="router-active">CSS-Snippets</a>
+    </mat-nav-list>
+</mat-sidenav
   >
-  <section>Main</section>
-  <router-outlet></router-outlet>
-  <p>
-    <button
-      mat-icon-button
-      (click)="sidenav.toggle()"
-      (close)="settings.expanded = false; this.log()"
-      class="material-icons"
-      matTooltip="Expand"
-      #tooltip="matTooltip"
-      matTooltipHideDelay="500"
-    >
-      <mat-icon>
-        <div id="arrowAnim">
-          <div class=" delay0">
-            <div class="arrow-left"></div>
-          </div>
-          <div class="arrowSliding delay1">
-            <div class="arrow-left"></div>
-          </div>
-          <div class="arrowSliding delay2">
-            <div class="arrow-left"></div>
-          </div>
-          <div class="arrowSliding delay3">
-            <div class="arrow-left"></div>
-          </div>
-        </div>      </mat-icon>
-    </button>
-  </p>
+  <section><router-outlet></router-outlet>
+  </section>
+
+  <button id="arrowAnim"
+  mat-icon-button
+  (click)="sidenav.toggle()"
+  (close)="settings.expanded = false; this.log()"
+  class="material-icons"
+  matTooltip="Expand"
+  #tooltip="matTooltip"
+  matTooltipHideDelay="500"
+>
+      <div class=" delay0">
+        <div class="arrow-left"></div>
+      </div>
+      <div class="arrowSliding delay1">
+        <div class="arrow-left"></div>
+      </div>
+      <div class="arrowSliding delay2">
+        <div class="arrow-left"></div>
+      </div>
+      <div class="arrowSliding delay3">
+        <div class="arrow-left"></div>
+      </div>
+
+</button>
 </mat-sidenav-container>
