@@ -25,54 +25,8 @@
       >
     </mat-nav-list>
   </mat-sidenav>
-  <router-outlet></router-outlet>
 
-  <button
-    id="arrowAnim"
-    mat-icon-button
-    (click)="sidenav.toggle()"
-    (close)="settings.expanded = false; this.log()"
-    class="material-icons"
-    matTooltip="Expand"
-    #tooltip="matTooltip"
-    matTooltipHideDelay="500"
-  >
-    <div
-      [ngClass]="{
-        initLeft: this.settings.expanded === true,
-        initRight: this.settings.expanded === false
-      }"
-    >
-      <div
-      class="arrow"
-      ></div>
-    </div>
-    <div
-      [ngClass]="{
-        'arrowLeftSliding': this.settings.expanded === true,
-        'arrowRightSliding': this.settings.expanded === false
-      }"
-      class="delay1"
-    >
-      <div class="arrow"></div>
-    </div>
-    <div
-      [ngClass]="{
-        'arrowLeftSliding': this.settings.expanded === true,
-        'arrowRightSliding': this.settings.expanded === false
-      }"
-      class="delay2"
-    >
-      <div class="arrow"></div>
-    </div>
-    <div
-      [ngClass]="{
-        'arrowLeftSliding': this.settings.expanded === true,
-        'arrowRightSliding': this.settings.expanded === false
-      }"
-      class="delay3"
-    >
-      <div class="arrow"></div>
-    </div>
-  </button>
+  <router-outlet></router-outlet>
+  <app-animated-collapse-arrow [expanded]="settings.expanded" (collapseButtonClick)="onCollapseButtonClick($event)"></app-animated-collapse-arrow>
+
 </mat-sidenav-container>

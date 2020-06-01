@@ -1,0 +1,45 @@
+<button
+  id="arrowAnim"
+  mat-icon-button
+  (click)="handleClick($event)"
+  class="material-icons"
+  matTooltip="Expand"
+  #tooltip="matTooltip"
+  matTooltipHideDelay="500"
+>
+  <div
+    [ngClass]="{
+      initLeft: this.expanded === true,
+      initRight: this.expanded === false
+    }"
+  >
+    <div class="arrow"></div>
+  </div>
+  <div
+    [ngClass]="{
+      arrowLeftSliding: this.expanded === true,
+      arrowRightSliding: this.expanded === false
+    }"
+    class="delay1 arrowSliding"
+  >
+    <div class="arrow"></div>
+  </div>
+  <div
+    [ngClass]="{
+      arrowLeftSliding: this.expanded === true,
+      arrowRightSliding: this.expanded === false
+    }"
+    class="delay2 arrowSliding"
+  >
+    <div class="arrow"></div>
+  </div>
+  <div
+    [ngClass]="{
+      arrowLeftSliding: this.expanded === true,
+      arrowRightSliding: this.expanded === false
+    }"
+    class="delay3 arrowSliding"
+  >
+    <div class="arrow"></div>
+  </div>
+</button>

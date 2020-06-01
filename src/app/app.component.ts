@@ -14,4 +14,8 @@ export class AppComponent {
   public log() {
     console.log(this.settings.expanded);
   }
+
+  public onCollapseButtonClick(state: boolean) {
+    this.settings.expanded = state;
+  }
 }
