@@ -43,7 +43,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit() {
-    this.renderer.setSize(window.innerWidth-1, window.innerHeight-1);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.container.nativeElement.appendChild(this.renderer.domElement);
     this.init();
     this.animate();
@@ -72,7 +72,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
 
     this.camera = new THREE.PerspectiveCamera(
       45,
-      (window.innerWidth-1) / (window.innerHeight-1),
+      window.innerWidth / window.innerHeight,
       1,
       4000
     );
@@ -185,10 +185,10 @@ export class ParticlesConnectComponent implements AfterViewInit {
   }
 
   private onWindowResize() {
-    this.camera.aspect = (window.innerWidth - 1) / (window.innerHeight - 1);
+    this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
 
-    this.renderer.setSize(window.innerWidth-1, window.innerHeight-1);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   private animate() {
