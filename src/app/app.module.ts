@@ -15,9 +15,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AnimatedCollapseArrowComponent } from './animated-collapse-arrow/animated-collapse-arrow.component';
+import { ParticleBannerComponent } from './particle-banner/particle-banner.component';
 
 @NgModule({
-  declarations: [AppComponent, ParticlesConnectComponent, CssSnippetsComponent, AnimatedCollapseArrowComponent],
+  declarations: [AppComponent, ParticlesConnectComponent, CssSnippetsComponent, AnimatedCollapseArrowComponent, ParticleBannerComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,

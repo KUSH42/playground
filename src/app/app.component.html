@@ -9,8 +9,11 @@
   class="sidenav"
 >
   <mat-sidenav #sidenav mode="push" [(opened)]="this.settings.expanded">
-    <span>Playground!</span>
     <mat-nav-list>
+      <a>
+        <app-particle-banner mat-list-item></app-particle-banner>
+
+      </a>
       <a
         mat-list-item
         routerLink="/particles-connect"
@@ -23,10 +26,18 @@
         routerLinkActive="router-active"
         >CSS-Snippets</a
       >
+      <a
+        mat-list-item
+        routerLink="/particle-banner"
+        routerLinkActive="router-active"
+        >Particle Banner</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
   <router-outlet></router-outlet>
-  <app-animated-collapse-arrow [expanded]="settings.expanded" (collapseButtonClick)="onCollapseButtonClick($event)"></app-animated-collapse-arrow>
-
+  <app-animated-collapse-arrow
+    [expanded]="settings.expanded"
+    (collapseButtonClick)="onCollapseButtonClick($event)"
+  ></app-animated-collapse-arrow>
 </mat-sidenav-container>
