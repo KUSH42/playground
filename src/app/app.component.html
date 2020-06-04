@@ -10,9 +10,12 @@
 >
   <mat-sidenav #sidenav mode="push" [(opened)]="this.settings.expanded">
     <mat-nav-list>
-      <a>
-        <app-particle-banner mat-list-item></app-particle-banner>
-
+      <a mat-list-item>
+        <div class="fadein">
+          <p class="pulse">
+            $PLAYGROUND
+          </p>
+        </div>
       </a>
       <a
         mat-list-item
@@ -32,6 +35,7 @@
         routerLinkActive="router-active"
         >Particle Banner</a
       >
+      <app-particle-banner mat-list-item></app-particle-banner>
     </mat-nav-list>
   </mat-sidenav>
 

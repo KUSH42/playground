@@ -35,7 +35,7 @@ export class ParticleBannerComponent implements AfterViewInit {
   private canvas: p5;
 
   ngAfterViewInit(): void {
-    const sketch = (s) => {
+    const sketch = (s: { preload: () => void; setup: () => void; draw: () => void; }) => {
       s.preload = () => {
         // preload code
       };
@@ -48,14 +48,25 @@ export class ParticleBannerComponent implements AfterViewInit {
     };
     this.canvas = new p5(sketch.bind(this));
 
+    console.log(
+      'resize: ' +
+        this.container.nativeElement.offsetWidth +
+        ',' +
+        this.container.nativeElement.offsetHeight
+    );
+
     this.canvas.resizeCanvas(
       this.container.nativeElement.offsetWidth,
       this.container.nativeElement.offsetHeight
     );
+    this.particles.forEach((p) => {
+      p.width = this.container.nativeElement.offsetWidth;
+      p.h = this.container.nativeElement.offsetHeight;
+    });
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event: { target: { innerWidth: void; }; }) {
     event.target.innerWidth;
     console.log(
       'resize: ' +
@@ -68,14 +79,18 @@ export class ParticleBannerComponent implements AfterViewInit {
       this.container.nativeElement.offsetWidth,
       this.container.nativeElement.offsetHeight
     );
+    this.particles.forEach((p) => {
+      p.width = this.container.nativeElement.offsetWidth;
+      p.h = this.container.nativeElement.offsetHeight;
+    });
   }
 
-  public static randomIntFromInterval(min, max) {
+  public static randomIntFromInterval(min: number, max: number) {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  public static randomFloatFromInterval(min, max) {
+  public static randomFloatFromInterval(min: number, max: number) {
     return Math.random() * (min - max) + max;
   }
 
@@ -116,7 +131,7 @@ export class ParticleBannerComponent implements AfterViewInit {
       this.particles.push(
         new Particle(
           this.container.nativeElement.offsetWidth,
-          this.container.nativeElement.offsetWidth,
+          this.container.nativeElement.offsetHeight,
           this.canvas
         )
       );
@@ -139,14 +154,14 @@ class Particle {
   private r: number;
   private xSpeed: number;
   private ySpeed: number;
-  private width: number;
-  private height: number;
-  private canvas;
+   width: number;
+   height: number;
+  private canvas: { noStroke: () => void; fill: (arg0: string) => void; circle: (arg0: number, arg1: number, arg2: number) => void; dist: (arg0: number, arg1: number, arg2: any, arg3: any) => any; stroke: (arg0: string) => void; line: (arg0: number, arg1: number, arg2: any, arg3: any) => void; };
   private color: string;
 
   // setting the co-ordinates, radius and the
   // speed of a particle in both the co-ordinates axes.
-  constructor(width: number, height: number, canvas) {
+  constructor(width: number, height: number, canvas: p5) {
     this.width = width;
     this.height = height;
     this.canvas = canvas;
@@ -175,8 +190,8 @@ class Particle {
 
   // this function creates the connections(lines)
   // between particles which are less than a certain distance apart
-  joinParticles(particles) {
-    particles.forEach((element) => {
+  joinParticles(particles: any[]) {
+    particles.forEach((element: { x: any; y: any; }) => {
       let dis = this.canvas.dist(this.x, this.y, element.x, element.y);
       if (dis < 85) {
         this.canvas.stroke('rgba(255,255,255,0.04)');
