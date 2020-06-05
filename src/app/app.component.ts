@@ -16,6 +16,6 @@ export class AppComponent {
   }
 
   public onCollapseButtonClick(state: boolean) {
-    this.settings.expanded = state;
+    this.settings.expanded = !this.settings.expanded;
   }
 }
