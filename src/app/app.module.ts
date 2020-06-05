@@ -16,9 +16,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AnimatedCollapseArrowComponent } from './animated-collapse-arrow/animated-collapse-arrow.component';
 import { ParticleBannerComponent } from './particle-banner/particle-banner.component';
+import { HomeComponent } from './home/home.component';
+import { TickerDirective } from './ticker.directive';
 
 @NgModule({
-  declarations: [AppComponent, ParticlesConnectComponent, CssSnippetsComponent, AnimatedCollapseArrowComponent, ParticleBannerComponent],
+  declarations: [AppComponent, ParticlesConnectComponent, CssSnippetsComponent, AnimatedCollapseArrowComponent, ParticleBannerComponent, HomeComponent, TickerDirective],
   imports: [
     AppRoutingModule,
     BrowserModule,
