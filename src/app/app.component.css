@@ -30,6 +30,11 @@ app-animated-collapse-arrow {
   background-color: #0f0f0f00;
 }
 
+/* Needed for at least THREE.JS-canvas */
+.content {
+  height: 100vh;
+}
+
 router-outlet {
   padding: 0;
   margin: 0;
