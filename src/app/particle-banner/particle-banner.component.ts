@@ -50,38 +50,38 @@ export class ParticleBannerComponent implements AfterViewInit {
 
     console.log(
       'resize: ' +
-        this.container.nativeElement.offsetWidth +
+        this.container.nativeElement.clientWidth +
         ',' +
-        this.container.nativeElement.offsetHeight
+        this.container.nativeElement.clientHeight
     );
 
     this.canvas.resizeCanvas(
-      this.container.nativeElement.offsetWidth,
-      this.container.nativeElement.offsetHeight
+      this.container.nativeElement.clientWidth,
+      this.container.nativeElement.clientHeight
     );
     this.particles.forEach((p) => {
-      p.width = this.container.nativeElement.offsetWidth;
-      p.h = this.container.nativeElement.offsetHeight;
+      p.width = this.container.nativeElement.clientWidth;
+      p.h = this.container.nativeElement.clientHeight;
     });
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: { target: { innerWidth: void; }; }) {
+  onResize(event: { target: { innerWidth: void;}; }) {
     event.target.innerWidth;
     console.log(
       'resize: ' +
-        this.container.nativeElement.offsetWidth +
+        this.container.nativeElement.clientWidth +
         ',' +
-        this.container.nativeElement.offsetHeight
+        this.container.nativeElement.clientHeight
     );
 
     this.canvas.resizeCanvas(
-      this.container.nativeElement.offsetWidth,
-      this.container.nativeElement.offsetHeight
+      this.container.nativeElement.clientWidth,
+      this.container.nativeElement.clientHeight
     );
     this.particles.forEach((p) => {
-      p.width = this.container.nativeElement.offsetWidth;
-      p.h = this.container.nativeElement.offsetHeight;
+      p.width = this.container.nativeElement.clientWidth;
+      p.h = this.container.nativeElement.clientHeight;
     });
   }
 
@@ -123,15 +123,15 @@ export class ParticleBannerComponent implements AfterViewInit {
   private setup() {
     let renderer = this.canvas
       .createCanvas(
-        this.container.nativeElement.offsetWidth,
-        this.container.nativeElement.offsetHeight
+        this.container.nativeElement.clientWidth,
+        this.container.nativeElement.clientHeight
       )
       .parent(this.container.nativeElement);
-    for (let i = 0; i < this.container.nativeElement.offsetWidth / 10; i++) {
+    for (let i = 0; i < this.container.nativeElement.clientWidth / 10; i++) {
       this.particles.push(
         new Particle(
-          this.container.nativeElement.offsetWidth,
-          this.container.nativeElement.offsetHeight,
+          this.container.nativeElement.clientWidth,
+          this.container.nativeElement.clientHeight,
           this.canvas
         )
       );
