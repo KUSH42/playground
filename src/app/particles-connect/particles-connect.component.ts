@@ -43,7 +43,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit() {
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.container.nativeElement.offsetWidth, this.container.nativeElement.offsetHeight);
     this.container.nativeElement.appendChild(this.renderer.domElement);
     this.init();
     this.animate();
@@ -72,7 +72,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
 
     this.camera = new THREE.PerspectiveCamera(
       45,
-      window.innerWidth / window.innerHeight,
+     (this.container.nativeElement.offsetWidth / this.container.nativeElement.offsetHeight),
       1,
       4000
     );
@@ -173,10 +173,8 @@ export class ParticlesConnectComponent implements AfterViewInit {
     this.linesMesh = new THREE.LineSegments(geometry, material);
     this.group.add(this.linesMesh);
 
-    //
-
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.container.nativeElement.offsetWidth, this.container.nativeElement.offsetHeight);
     this.renderer.outputEncoding = THREE.sRGBEncoding;
 
     this.container.nativeElement.appendChild(this.renderer.domElement);
@@ -185,10 +183,10 @@ export class ParticlesConnectComponent implements AfterViewInit {
   }
 
   private onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect =(this.container.nativeElement.offsetWidth / this.container.nativeElement.offsetHeight);
     this.camera.updateProjectionMatrix();
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.container.nativeElement.offsetWidth, this.container.nativeElement.offsetHeight);
   }
 
   private animate() {
