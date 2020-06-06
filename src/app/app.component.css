@@ -14,7 +14,6 @@ app-animated-collapse-arrow {
   z-index: 999;
 }
 
-
 .buttonLeft {
   left: 0.5em;
 }
@@ -65,15 +64,15 @@ app-particle-banner {
 }
 
 .fadein {
-  animation: fadein 1s ease alternate;
+  animation: fadein 3s ease-in alternate;
 }
 
 @keyframes fadein {
   0% {
-    opacity: 0;
+    opacity: 0.25;
   }
   75% {
-    opacity: 0;
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
