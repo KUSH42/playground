@@ -36,7 +36,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
     minDistance: 150,
     limitConnections: false,
     maxConnections: 20,
-    particleCount: 500,
+    particleCount: 250,
     color: 0x000ff00,
   };
 
