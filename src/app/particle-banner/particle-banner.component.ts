@@ -33,40 +33,20 @@ export class ParticleBannerComponent implements AfterViewInit {
   // an array to add multiple particles
   private particles = [];
   private canvas: p5;
+  private renderer: p5.Renderer;
 
   ngAfterViewInit(): void {
-    const sketch = (s: { preload: () => void; setup: () => void; draw: () => void; }) => {
-      s.preload = () => {
-        // preload code
-      };
 
-      s.setup = () => {
-        this.setup();
-      };
-
-      s.draw = () => this.draw();
+    const sketch = (s: p5) => {
+      s.setup = () => this.setup(s);
+      s.draw = () => this.draw(s);
     };
+
     this.canvas = new p5(sketch.bind(this));
-
-    console.log(
-      'resize: ' +
-        this.container.nativeElement.clientWidth +
-        ',' +
-        this.container.nativeElement.clientHeight
-    );
-
-    this.canvas.resizeCanvas(
-      this.container.nativeElement.clientWidth,
-      this.container.nativeElement.clientHeight
-    );
-    this.particles.forEach((p) => {
-      p.width = this.container.nativeElement.clientWidth;
-      p.h = this.container.nativeElement.clientHeight;
-    });
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: { target: { innerWidth: void;}; }) {
+  onResize(event: { target: { innerWidth: void } }) {
     event.target.innerWidth;
     console.log(
       'resize: ' +
@@ -120,8 +100,8 @@ export class ParticleBannerComponent implements AfterViewInit {
     );
   }
 
-  private setup() {
-    let renderer = this.canvas
+  private setup(s: p5) {
+    this.renderer = s
       .createCanvas(
         this.container.nativeElement.clientWidth,
         this.container.nativeElement.clientHeight
@@ -132,14 +112,14 @@ export class ParticleBannerComponent implements AfterViewInit {
         new Particle(
           this.container.nativeElement.clientWidth,
           this.container.nativeElement.clientHeight,
-          this.canvas
+          s
         )
       );
     }
   }
 
-  private draw() {
-    this.canvas.background('#0f0f0f');
+  private draw(s: p5) {
+    s.background('#0f0f0f');
     for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].createParticle();
       this.particles[i].moveParticle();
@@ -154,10 +134,10 @@ class Particle {
   private r: number;
   private xSpeed: number;
   private ySpeed: number;
-   width: number;
-   height: number;
-  private canvas: { noStroke: () => void; fill: (arg0: string) => void; circle: (arg0: number, arg1: number, arg2: number) => void; dist: (arg0: number, arg1: number, arg2: any, arg3: any) => any; stroke: (arg0: string) => void; line: (arg0: number, arg1: number, arg2: any, arg3: any) => void; };
+  width: number;
+  height: number;
   private color: string;
+  private canvas: p5;
 
   // setting the co-ordinates, radius and the
   // speed of a particle in both the co-ordinates axes.
@@ -191,7 +171,7 @@ class Particle {
   // this function creates the connections(lines)
   // between particles which are less than a certain distance apart
   joinParticles(particles: any[]) {
-    particles.forEach((element: { x: any; y: any; }) => {
+    particles.forEach((element: { x: any; y: any }) => {
       let dis = this.canvas.dist(this.x, this.y, element.x, element.y);
       if (dis < 85) {
         this.canvas.stroke('rgba(255,255,255,0.04)');
