@@ -4,8 +4,8 @@ button {
 }
 
 .arrow {
-  width: 0.75em;
-  height: 0.75em;
+  width: 1em;
+  height: 1em;
 }
 .arrowSliding {
   position: absolute;
@@ -63,56 +63,56 @@ button {
 @keyframes slideLeftInit {
   0% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
 }
 @-webkit-keyframes slideLeftInit {
   0% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(0.5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
   }
 }
 
 @keyframes slideLeft {
   0% {
     opacity: 0;
-    transform: translateX(5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(5em)  translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(4em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(4em)  translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
@@ -122,21 +122,21 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(0em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0em)  translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(-45deg);
   }
 }
 @-webkit-keyframes slideLeft {
   0% {
     opacity: 0;
-    transform: translateX(5em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(5em)  translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(4em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(4em)  translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
@@ -146,56 +146,56 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(0em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(0em)  translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(-45deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(-45deg);
   }
 }
 
 @keyframes slideRightInit {
   0% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRightInit {
   0% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-1em)  translateY(-1em) rotate(135deg);
   }
 }
 
@@ -203,11 +203,11 @@ button {
 @keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-5.25em)  translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-4.25em)  translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -217,21 +217,21 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-0.25em)  translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(1.25em)  translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-5.25em)  translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-4.25em)  translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -241,10 +241,10 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(-0.25em)  translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em) translateY(-0.5em) rotate(135deg);
+    transform: translateX(1.25em)  translateY(-1em) rotate(135deg);
   }
 }
