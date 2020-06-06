@@ -11,16 +11,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatRippleModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AnimatedCollapseArrowComponent } from './animated-collapse-arrow/animated-collapse-arrow.component';
 import { ParticleBannerComponent } from './particle-banner/particle-banner.component';
 import { HomeComponent } from './home/home.component';
-import { TickerDirective } from './ticker.directive';
+import { TypewriterDirective } from './typewriter.directive';
 
 @NgModule({
-  declarations: [AppComponent, ParticlesConnectComponent, CssSnippetsComponent, AnimatedCollapseArrowComponent, ParticleBannerComponent, HomeComponent, TickerDirective],
+  declarations: [
+    AppComponent,
+    ParticlesConnectComponent,
+    CssSnippetsComponent,
+    AnimatedCollapseArrowComponent,
+    ParticleBannerComponent,
+    HomeComponent,
+    TypewriterDirective,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -29,6 +38,7 @@ import { TickerDirective } from './ticker.directive';
     MatButtonToggleModule,
     MatIconModule,
     MatListModule,
+    MatRippleModule,
     MatSliderModule,
     MatSidenavModule,
     MatTooltipModule,
