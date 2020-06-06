@@ -7,10 +7,6 @@ app-animated-collapse-arrow {
   position: fixed !important;
   bottom: 1em;
   left: 8.75em;
-  height: 4em;
-  width: 4em;
-  margin-bottom: 0;
-  margin-left: 0;
   z-index: 999;
 }
 
