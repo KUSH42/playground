@@ -1,0 +1,28 @@
+div {
+
+  color: #33ff00f7;
+  text-shadow: 0 0 4px #33ff00;
+
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.2) 60%,
+    rgba(0, 0, 0, 0.4) 80%
+   );
+   background-size: 5px 3px;
+   display: block;
+   position: absolute;
+   content: "";
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+
+
+  display: block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

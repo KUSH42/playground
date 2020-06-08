@@ -57,7 +57,7 @@ export class TypewriterDirective implements AfterViewInit {
     from(this.mementos)
       .pipe(
         concatMap((memento) =>
-          of(memento).pipe(delay(memento.previousNodeLength * 150))
+          of(memento).pipe(delay(memento.previousNodeLength * 60))
         )
       )
       .subscribe((memento) =>
