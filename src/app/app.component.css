@@ -3,38 +3,30 @@ body {
   padding: 0 !important;
 }
 
-* {
-  --router-active-green: #00bb00aa;
-  --router-active-blue: #0000bbaa;
-  --router-active-red: #bb0000aa;
-}
-
+/** Collapse Button **/
 app-animated-collapse-arrow {
   position: fixed !important;
   bottom: 1em;
   left: 8.75em;
   z-index: 999;
 }
-
 .buttonLeft {
   left: 0.5em;
 }
 
-.sidenav {
+mat-sidenav {
   height: 100vh;
 }
 
+mat-sidenav-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
 .router-active {
   background-color: var(--router-active) !important;
 }
-
 .mat-drawer {
   background-color: #0f0f0f00;
-}
-
-/* Needed for THREE.js-canvas */
-.content {
-  height: 100vh;
 }
 
 router-outlet {
@@ -42,26 +34,14 @@ router-outlet {
   margin: 0;
   width: 100%;
 }
-
-mat-sidenav-content {
-  margin: 0 !important;
-  padding: 0 !important;
+/* Needed for THREE.js-canvas */
+.content {
+  height: 100vh;
 }
-
 
 app-matrix {
-    overflow: hidden;
+  overflow: hidden;
 }
-
-
-.bottom  {
-  display: flex;
-  align-items: center;
-}
-.bottomStick{/*border-top:1px solid green;border-bottom:1px solid green;*/position:absolute !important; bottom:0 !important;   left: 50%;
-  transform: translate(-50%, -50%);}
-.bottomRelative{position:relative !important; left: 50% !important;   left: 50%;
-  transform: translate(-50%, -50%);}
 
 app-particle-banner {
   position: absolute;
@@ -73,17 +53,32 @@ app-particle-banner {
   overflow: hidden;
 }
 
+/** Bottom Sidenav Button Group **/
+.bottom {
+  align-items: center;
+}
+.bottomStick {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bottomRelative {
+  position: relative !important;
+  left: 1em;
+  margin-top: 1em !important;
+}
+
+/** Banner Text **/
 .pulse {
   text-align: center;
   font-family: "Lucida Console", Arial, Helvetica, sans-serif;
   animation: pulse 8s ease alternate infinite;
   color: #33ff00f0;
 }
-
 .fadein {
   animation: fadein 3s ease-in alternate;
 }
-
 @keyframes fadein {
   0% {
     opacity: 0.25;
@@ -95,7 +90,6 @@ app-particle-banner {
     opacity: 1;
   }
 }
-
 @keyframes pulse {
   0% {
     transform: translate(0.02em, 0.04em) scale(1.02) skew(-2deg) rotate(2deg);

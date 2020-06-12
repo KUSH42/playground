@@ -70,7 +70,7 @@ export class AppComponent implements OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   getScreenHeight(event?) {
-    if (window.innerHeight <= 412) {
+    if (window.innerHeight <= 290) {
       this.appropriateClass = 'bottomRelative';
     } else {
       this.appropriateClass = 'bottomStick';

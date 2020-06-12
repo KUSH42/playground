@@ -17,12 +17,9 @@
           </p>
         </div>
       </a>
-      <a
-      mat-list-item
-      routerLink="/matrix"
-      routerLinkActive="router-active"
-      >Matrix</a
-    >
+      <a mat-list-item routerLink="/matrix" routerLinkActive="router-active"
+        >Matrix</a
+      >
       <a
         mat-list-item
         routerLink="/particle-banner"
@@ -36,11 +33,19 @@
         >3D Particles</a
       >
 
-      <mat-button-toggle-group [value]="this.selectedColor" class="bottom"  [ngClass]="this.appropriateClass" mat-list-item name="globalColor" (change)="onColorChange($event.value)">
+      <mat-button-toggle-group
+        [value]="this.selectedColor"
+        class="bottom"
+        [ngClass]="this.appropriateClass"
+        mat-list-item
+        name="globalColor"
+        (change)="onColorChange($event.value)"
+      >
         <mat-button-toggle value="red">R</mat-button-toggle>
         <mat-button-toggle class="active" value="green">G</mat-button-toggle>
         <mat-button-toggle value="blue">B</mat-button-toggle>
-      </mat-button-toggle-group>      <app-particle-banner mat-list-item> </app-particle-banner>
+      </mat-button-toggle-group>
+      <app-particle-banner mat-list-item> </app-particle-banner>
     </mat-nav-list>
   </mat-sidenav>
   <div class="content">
