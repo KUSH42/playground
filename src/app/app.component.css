@@ -26,7 +26,7 @@ app-animated-collapse-arrow {
   background-color: #0f0f0f00;
 }
 
-/* Needed for at least THREE.JS-canvas */
+/* Needed for THREE.js-canvas */
 .content {
   height: 100vh;
 }

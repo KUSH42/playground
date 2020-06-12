@@ -16,7 +16,7 @@ body {
   font-family: Play, "Helvetica Neue", sans-serif;
 }
 
-
-  div.dg.ac {
-    z-index: 999;
-  }
+/* Required for dat.gui to be shown on top */
+div.dg.ac {
+  z-index: 999;
+}
