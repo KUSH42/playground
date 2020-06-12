@@ -55,7 +55,6 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
 
   private initGUI() {
     this.gui = new dat.GUI();
-    console.log(this.gui);
     this.gui.close();
     this.gui.add(this.effectController, "showDots");
     this.gui.add(this.effectController, "showLines");
