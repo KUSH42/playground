@@ -1,7 +1,7 @@
-import { Component, ViewChild, AfterViewInit, ElementRef } from "@angular/core";
+import { Component, ViewChild, AfterViewInit, ElementRef, OnDestroy } from "@angular/core";
 
 import * as THREE from "three";
-import { GUI } from "three/examples/jsm/libs/dat.gui.module.js";
+import * as dat from 'dat.gui';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 @Component({
@@ -9,7 +9,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
   templateUrl: "./particles-connect.component.html",
   styleUrls: ["./particles-connect.component.css"],
 })
-export class ParticlesConnectComponent implements AfterViewInit {
+export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
   @ViewChild("rendererContainer")
   private container: ElementRef;
   private group: any;
@@ -24,7 +24,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
   private pointCloud: any;
   private particlePositions: any;
   private linesMesh: any;
-  private gui: GUI;
+  private gui: dat.GUI;
 
   public maxParticleCount = 1000;
   private r = 800;
@@ -37,7 +37,7 @@ export class ParticlesConnectComponent implements AfterViewInit {
     limitConnections: false,
     maxConnections: 20,
     particleCount: 250,
-    color: 0x000ff00,
+    color: 0x00ff00,
   };
 
   constructor() {}
@@ -49,9 +49,14 @@ export class ParticlesConnectComponent implements AfterViewInit {
     this.animate();
   }
 
-  private initGUI() {
-    this.gui = new GUI();
+  ngOnDestroy() {
+    this.gui.destroy();
+  }
 
+  private initGUI() {
+    this.gui = new dat.GUI();
+    console.log(this.gui);
+    this.gui.close();
     this.gui.add(this.effectController, "showDots");
     this.gui.add(this.effectController, "showLines");
     this.gui.add(this.effectController, "minDistance", 10, 300);

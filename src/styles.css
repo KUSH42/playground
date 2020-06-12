@@ -15,3 +15,8 @@ body {
 .mat-list-item {
   font-family: Play, "Helvetica Neue", sans-serif;
 }
+
+
+  div.dg.ac {
+    z-index: 999;
+  }
