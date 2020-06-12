@@ -4,22 +4,28 @@ import {
   ElementRef,
   AfterViewInit,
   HostListener,
+  OnDestroy,
 } from '@angular/core';
 
 import * as p5 from 'p5';
+import { GlobalManagerService } from '../global-manager.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-particle-banner',
   templateUrl: './particle-banner.component.html',
   styleUrls: ['./particle-banner.component.css'],
 })
-export class ParticleBannerComponent implements AfterViewInit {
-  constructor() {}
+export class ParticleBannerComponent implements AfterViewInit, OnDestroy {
+  constructor(private _GlobalManagerSerice: GlobalManagerService) {
+    this._selectedColor = _GlobalManagerSerice.selectedColor;
+  }
 
   @ViewChild('rendererContainer', { read: ElementRef, static: false })
   private container: ElementRef;
+  private subscriptions: Subscription[] = [];
 
-  private static rgba = {
+  private static readonly rgbaGreen = {
     rMin: 0,
     rMax: 36,
     gMin: 160,
@@ -29,20 +35,95 @@ export class ParticleBannerComponent implements AfterViewInit {
     aMin: 0.3,
     aMax: 0.6,
   };
+  private static readonly rgbaRed = {
+    rMin: 160,
+    rMax: 255,
+    gMin: 0,
+    gMax: 36,
+    bMin: 0,
+    bMax: 36,
+    aMin: 0.3,
+    aMax: 0.6,
+  };
+  private static readonly rgbaBlue = {
+    rMin: 0,
+    rMax: 36,
+    gMin: 0,
+    gMax: 36,
+    bMin: 160,
+    bMax: 255,
+    aMin: 0.3,
+    aMax: 0.6,
+  };
+
+  private rgba = ParticleBannerComponent.rgbaGreen;
 
   // an array to add multiple particles
   private particles = [];
   private canvas: p5;
+  private _selectedColor: string;
   private renderer: p5.Renderer;
 
-  ngAfterViewInit(): void {
+  set selectedColor(color: string) {
+    if (color == null) {
+      return;
+    }
+    switch (color.toLowerCase()) {
+      case 'green': {
+        this._selectedColor = 'green';
+        this.rgba = ParticleBannerComponent.rgbaGreen;
+        this.particles.forEach(
+          (particle) =>
+            (particle.color = ParticleBannerComponent.getRandomColor(this.rgba))
+        );
+        break;
+      }
+      case 'blue': {
+        this._selectedColor = 'blue';
+        this.rgba = ParticleBannerComponent.rgbaBlue;
+        this.particles.forEach(
+          (particle) =>
+            (particle.color = ParticleBannerComponent.getRandomColor(this.rgba))
+        );
+        break;
+      }
+      case 'red': {
+        this._selectedColor = 'red';
+        this.rgba = ParticleBannerComponent.rgbaRed;
+        this.particles.forEach(
+          (particle) =>
+            (particle.color = ParticleBannerComponent.getRandomColor(this.rgba))
+        );
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
 
+  get selectedColor() {
+    return this._selectedColor;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  ngAfterViewInit(): void {
     const sketch = (s: p5) => {
       s.setup = () => this.setup(s);
       s.draw = () => this.draw(s);
     };
 
     this.canvas = new p5(sketch.bind(this));
+
+    // subscribe to global color change
+    this.subscriptions.push(
+      this._GlobalManagerSerice.colorObsservable.subscribe((color: string) => {
+        this.selectedColor = color;
+      })
+    );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -74,28 +155,16 @@ export class ParticleBannerComponent implements AfterViewInit {
     return Math.random() * (min - max) + max;
   }
 
-  public static getRandomColor() {
+  public static getRandomColor(rgba: any) {
     return (
       'rgba(' +
-      this.randomIntFromInterval(
-        ParticleBannerComponent.rgba.rMin,
-        ParticleBannerComponent.rgba.rMax
-      ) +
+      ParticleBannerComponent.randomIntFromInterval(rgba.rMin, rgba.rMax) +
       ',' +
-      this.randomIntFromInterval(
-        ParticleBannerComponent.rgba.gMin,
-        ParticleBannerComponent.rgba.gMax
-      ) +
+      ParticleBannerComponent.randomIntFromInterval(rgba.gMin, rgba.gMax) +
       ',' +
-      this.randomIntFromInterval(
-        ParticleBannerComponent.rgba.bMin,
-        ParticleBannerComponent.rgba.bMax
-      ) +
+      ParticleBannerComponent.randomIntFromInterval(rgba.bMin, rgba.bMax) +
       ',' +
-      this.randomFloatFromInterval(
-        ParticleBannerComponent.rgba.aMin,
-        ParticleBannerComponent.rgba.aMax
-      ) +
+      ParticleBannerComponent.randomFloatFromInterval(rgba.aMin, rgba.aMax) +
       ')'
     );
   }
@@ -112,7 +181,8 @@ export class ParticleBannerComponent implements AfterViewInit {
         new Particle(
           this.container.nativeElement.clientWidth,
           this.container.nativeElement.clientHeight,
-          s
+          s,
+          this.rgba
         )
       );
     }
@@ -136,12 +206,12 @@ class Particle {
   private ySpeed: number;
   width: number;
   height: number;
-  private color: string;
+  color: string;
   private canvas: p5;
 
   // setting the co-ordinates, radius and the
   // speed of a particle in both the co-ordinates axes.
-  constructor(width: number, height: number, canvas: p5) {
+  constructor(width: number, height: number, canvas: p5, rgba: any) {
     this.width = width;
     this.height = height;
     this.canvas = canvas;
@@ -150,7 +220,7 @@ class Particle {
     this.r = ParticleBannerComponent.randomIntFromInterval(1, 8);
     this.xSpeed = ParticleBannerComponent.randomFloatFromInterval(-1, 1);
     this.ySpeed = ParticleBannerComponent.randomFloatFromInterval(-0.75, 0.75);
-    this.color = ParticleBannerComponent.getRandomColor();
+    this.color = ParticleBannerComponent.getRandomColor(rgba);
   }
 
   // creation of a particle.

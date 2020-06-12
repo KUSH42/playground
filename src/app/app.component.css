@@ -3,6 +3,12 @@ body {
   padding: 0 !important;
 }
 
+* {
+  --router-active-green: #00bb00aa;
+  --router-active-blue: #0000bbaa;
+  --router-active-red: #bb0000aa;
+}
+
 app-animated-collapse-arrow {
   position: fixed !important;
   bottom: 1em;
@@ -19,7 +25,7 @@ app-animated-collapse-arrow {
 }
 
 .router-active {
-  background-color: #00bb00aa !important;
+  background-color: var(--router-active) !important;
 }
 
 .mat-drawer {
