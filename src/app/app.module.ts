@@ -19,6 +19,7 @@ import { AnimatedCollapseArrowComponent } from './animated-collapse-arrow/animat
 import { ParticleBannerComponent } from './particle-banner/particle-banner.component';
 import { HomeComponent } from './home/home.component';
 import { TypewriterDirective } from './typewriter.directive';
+import { MatrixComponent } from './matrix/matrix.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TypewriterDirective } from './typewriter.directive';
     ParticleBannerComponent,
     HomeComponent,
     TypewriterDirective,
+    MatrixComponent,
   ],
   imports: [
     AppRoutingModule,
