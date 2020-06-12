@@ -120,7 +120,7 @@ export class ParticleBannerComponent implements AfterViewInit, OnDestroy {
 
     // subscribe to global color change
     this.subscriptions.push(
-      this._GlobalManagerSerice.colorObsservable.subscribe((color: string) => {
+      this._GlobalManagerSerice.colorObservable.subscribe((color: string) => {
         this.selectedColor = color;
       })
     );

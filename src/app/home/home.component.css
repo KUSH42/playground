@@ -1,6 +1,6 @@
 div {
-  color: #33ff00f7;
-  text-shadow: 0 0 4px #33ff00;
+  color: var(--text-Color);
+  text-shadow: 0 0 4px var(--router-active);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.6) 40%,

@@ -1,4 +1,10 @@
-import { Component, HostListener, HostBinding, OnDestroy } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  HostBinding,
+  OnDestroy,
+  AfterViewInit,
+} from '@angular/core';
 import { GlobalManagerService } from './global-manager.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -8,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, AfterViewInit {
   title = 'playground';
   settings = {
     expanded: true,
@@ -24,16 +30,20 @@ export class AppComponent implements OnDestroy {
       case 'green': {
         this._selectedColor = 'green';
         this.routerActive = this.routerActiveGreen;
+        this.textColor = this.textColorGreen;
         break;
       }
       case 'blue': {
         this._selectedColor = 'blue';
         this.routerActive = this.routerActiveBlue;
+        this.textColor = this.textColorBlue;
+
         break;
       }
       case 'red': {
         this._selectedColor = 'red';
         this.routerActive = this.routerActiveRed;
+        this.textColor = this.textColorRed;
         break;
       }
       default: {
@@ -49,10 +59,15 @@ export class AppComponent implements OnDestroy {
   routerActiveRed = '#bb0000aa';
   routerActive = this.routerActiveGreen;
 
+  textColorGreen = '#33ff00';
+  textColorBlue = '#0033ff';
+  textColorRed = '#ff0005';
+  textColor = this.textColorGreen;
+
   @HostBinding('attr.style')
   public get valueAsStyle(): any {
     return this.sanitizer.bypassSecurityTrustStyle(
-      `--router-active: ${this.routerActive}`
+      `--router-active: ${this.routerActive}; --text-Color: ${this.textColor};`
     );
   }
 
@@ -77,8 +92,11 @@ export class AppComponent implements OnDestroy {
     private sanitizer: DomSanitizer
   ) {
     this.getScreenHeight();
-    this._GlobalManagerSerice.colorObsservable.subscribe(color =>
-      this.selectedColor = color
+  }
+
+  ngAfterViewInit(): void {
+    this._GlobalManagerSerice.colorObservable.subscribe(
+      (color) => (this.selectedColor = color)
     );
   }
 

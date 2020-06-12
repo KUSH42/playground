@@ -175,7 +175,7 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
     );
 
     // subscribe to global color change
-    this._subscritpions.push(this._GlobalManagerSerice.colorObsservable.subscribe(
+    this._subscritpions.push(this._GlobalManagerSerice.colorObservable.subscribe(
       (color:string) => {
         this.selectedColor=color;
       }
