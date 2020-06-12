@@ -13,7 +13,6 @@ export class GlobalManagerService {
   set selectedColor(color: string) {
     this._selectedColor = color;
     this.colorObsservable.next(this._selectedColor);
-    console.log(`Global color changed: ${this._selectedColor}`);
   }
 
   constructor() {
