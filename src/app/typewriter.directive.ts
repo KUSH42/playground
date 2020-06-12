@@ -69,9 +69,21 @@ export class TypewriterDirective implements AfterViewInit {
       element.childNodes.forEach((childElement: HTMLElement) => {
         this.analyzeChildNode(childElement);
       });
-      if (element.nodeName != 'UL') {
+      if (this.hasTextChild(element)) {
         element.style.display = 'none';
       }
     }
+  }
+
+  private hasTextChild(element: HTMLElement) {
+    for (let i = 0; i < element.childNodes.length; i++) {
+      if (
+        element.childNodes[i].nodeType == TypewriterDirective.TEXT_NODE_TYPE
+      ) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
