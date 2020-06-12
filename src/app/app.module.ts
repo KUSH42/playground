@@ -30,7 +30,7 @@ import { MatrixComponent } from './matrix/matrix.component';
     ParticleBannerComponent,
     HomeComponent,
     TypewriterDirective,
-    MatrixComponent,
+    MatrixComponent
   ],
   imports: [
     AppRoutingModule,

@@ -129,12 +129,6 @@ export class ParticleBannerComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event: { target: { innerWidth: void } }) {
     event.target.innerWidth;
-    console.log(
-      'resize: ' +
-        this.container.nativeElement.clientWidth +
-        ',' +
-        this.container.nativeElement.clientHeight
-    );
 
     this.canvas.resizeCanvas(
       this.container.nativeElement.clientWidth,
