@@ -6,13 +6,13 @@ import { concatMap, delay } from 'rxjs/operators';
   selector: '[appTypewriter]',
 })
 export class TypewriterDirective implements AfterViewInit {
-
   private static TEXT_NODE_TYPE: number = 3;
   private el: ElementRef;
   private mementos: {
     node: any;
     data: string;
     previousNodeLength: number;
+    parentNodeOldDisplay: string;
   }[] = [];
 
   constructor(el: ElementRef) {
@@ -28,14 +28,23 @@ export class TypewriterDirective implements AfterViewInit {
 
     from(this.mementos)
       .pipe(
-        concatMap((memento) =>
-          from(memento.data).pipe(
+        concatMap((memento) => {
+          console.log('map');
+          console.log(
+            'current: ' +
+              memento.node.parentNode.style.display +
+              ' old: ' +
+              memento.parentNodeOldDisplay
+          );
+          memento.node.parentElement.style.display =
+            memento.parentNodeOldDisplay;
+          return from(memento.data).pipe(
             // each memento
             concatMap((char) =>
               of({ node: memento.node, char }).pipe(delay(25))
             ) // each char
-          )
-        )
+          );
+        })
       )
       .subscribe(({ node, char }) => {
         node.data += char;
@@ -52,6 +61,7 @@ export class TypewriterDirective implements AfterViewInit {
         node: element,
         data: element.data,
         previousNodeLength: nodeLength,
+        parentNodeOldDisplay: element.parentElement.style.display,
       });
 
       element.data = '';
@@ -59,6 +69,9 @@ export class TypewriterDirective implements AfterViewInit {
       element.childNodes.forEach((childElement: HTMLElement) => {
         this.analyzeChildNode(childElement);
       });
+      if (element.nodeName != 'UL') {
+        element.style.display = 'none';
+      }
     }
   }
 }
