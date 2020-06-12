@@ -24,18 +24,9 @@ export class TypewriterDirective implements AfterViewInit {
       this.analyzeChildNode(element);
     });
 
-    console.log(this.mementos);
-
     from(this.mementos)
       .pipe(
         concatMap((memento) => {
-          console.log('map');
-          console.log(
-            'current: ' +
-              memento.node.parentNode.style.display +
-              ' old: ' +
-              memento.parentNodeOldDisplay
-          );
           memento.node.parentElement.style.display =
             memento.parentNodeOldDisplay;
           return from(memento.data).pipe(
