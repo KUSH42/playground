@@ -6,7 +6,8 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-import * as dat from 'dat.gui';
+import { GlobalManagerService } from '../global-manager.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-matrix',
@@ -14,12 +15,11 @@ import * as dat from 'dat.gui';
   styleUrls: ['./matrix.component.css'],
 })
 export class MatrixComponent implements AfterViewInit, OnDestroy {
-
   private font_size = 10;
 
   private drops: number[] = []; // an array of drops - one per column
   // random characters - taken from the unicode charset
-  private charsA = 'АВЕДЁЗИЛМНОЯЩЦХТСРП漢字は日本語で使われる文字で中国からやってきました。ひらがなとカタカナは日本で作られました©®¶$#!(*<=>?@¥ͶΔΛΞΠΣΩΨΧ☺ت0123456798ABCDEF田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑'.split(
+  private chars = 'АВЕДЁЗИЛМНОЯЩЦХТСРП漢字は日本語で使われる文字で中国からやってきました。ひらがなとカタカナは日本で作られました©®¶$#!(*<=>?@¥ͶΔΛΞΠΣΩΨΧ☺ت0123456798ABCDEF田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑'.split(
     ''
   );
   // array of colors to randomize characters with
@@ -63,23 +63,50 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
   private scanlinesDone = false;
   private scanlineInitDone = false;
 
-  private effectController = {
-    red: false,
-    green: true,
-    blue: false,
-  };
+  // canvas context
+  @ViewChild('canvas') canvas: ElementRef;
+  private ctx: CanvasRenderingContext2D;
 
-  private gui: dat.GUI;
+  private _selectedColor: string = 'green';
+  private _subscritpions: Subscription[] = [];
 
-  constructor() {}
+  get selectedColor() {
+    return this._selectedColor;
+  }
+
+  set selectedColor(color: string) {
+    if (color == null) {
+      return;
+    }
+    switch(color.toLowerCase()) {
+      case 'green': {
+        this._selectedColor = 'green';
+        this.colors = this.colorsG;
+        break;
+      }
+      case "blue": {
+        this._selectedColor = 'blue';
+        this.colors = this.colorsB;
+        break;
+      }
+      case 'red': {
+        this._selectedColor = 'red';
+        this.colors = this.colorsR;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+
+  constructor(private _GlobalManagerSerice:GlobalManagerService) {
+    this._selectedColor = _GlobalManagerSerice.selectedColor;
+  }
 
   ngOnDestroy(): void {
-    this.gui.destroy();
-    }
-
-  @ViewChild('canvas') canvas: ElementRef;
-  // canvas context
-  private ctx: CanvasRenderingContext2D;
+    this._subscritpions.forEach(subscription => subscription.unsubscribe());
+  }
 
   @HostListener('window:resize', ['$event'])
   sizeChange(event: any) {
@@ -129,7 +156,6 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
 
     // reload image
     this.ctx.putImageData(imgData, 0, 0);
-    console.log('size changed.', event);
   }
 
   ngAfterViewInit(): void {
@@ -148,7 +174,12 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
       this.canvas.nativeElement.height
     );
 
-    this.initGUI();
+    // subscribe to global color change
+    this._subscritpions.push(this._GlobalManagerSerice.colorObsservable.subscribe(
+      (color:string) => {
+        this.selectedColor=color;
+      }
+    ));
 
     const columns = this.canvas.nativeElement.width / this.font_size; // number of columns for the rain
 
@@ -169,39 +200,6 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
     }, (this.canvas.nativeElement.height / this.font_size) * 34 + 2000);
   }
 
-  private initGUI() {
-    this.gui = new dat.GUI();
-    this.gui.close();
-
-    let redController = this.gui.add(this.effectController, 'red');
-    let greenController = this.gui.add(this.effectController, 'green');
-    let blueController = this.gui.add(this.effectController, 'blue');
-
-    redController.onChange(() => {
-      if (redController.getValue()) {
-        blueController.setValue(false);
-        greenController.setValue(false);
-        this.colors = this.colorsR;
-      }
-    });
-
-    blueController.onChange(() => {
-      if (blueController.getValue()) {
-        redController.setValue(false);
-        greenController.setValue(false);
-        this.colors = this.colorsB;
-      }
-    });
-
-    greenController.onChange(() => {
-      if (greenController.getValue()) {
-        blueController.setValue(false);
-        redController.setValue(false);
-        this.colors = this.colorsG;
-      }
-    });
-  }
-
   draw() {
     // translucent BG to show trail
     this.ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
@@ -219,7 +217,7 @@ export class MatrixComponent implements AfterViewInit, OnDestroy {
       this.ctx.fillStyle = this.colors[
         (i + Math.floor(random * this.colors.length)) % this.colors.length
       ]; // green text
-      const text = this.charsA[Math.floor(random * this.charsA.length)];
+      const text = this.chars[Math.floor(random * this.chars.length)];
 
       // x = i*font_size, y = value of drops[i]*font_size
       this.ctx.fillText(
