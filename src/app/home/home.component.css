@@ -5,8 +5,8 @@ div {
 
   background: linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.2) 60%,
-    rgba(0, 0, 0, 0.4) 80%
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.8) 60%
    );
    background-size: 5px 3px;
    display: block;

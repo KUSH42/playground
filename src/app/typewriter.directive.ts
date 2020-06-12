@@ -18,7 +18,7 @@ export class TypewriterDirective implements AfterViewInit {
   private el: ElementRef;
 
   private mementos: {
-    node: Node;
+    node: any;
     data: string;
     previousNodeLength: number;
   }[] = [];
@@ -57,16 +57,17 @@ export class TypewriterDirective implements AfterViewInit {
     from(this.mementos)
       .pipe(
         concatMap((memento) =>
-          of(memento).pipe(delay(memento.previousNodeLength * 60))
+          from(memento.data).pipe(
+            // each memento
+            concatMap((char) =>
+              of({ node: memento.node, char }).pipe(delay(60))
+            ) // each char
+          )
         )
       )
-      .subscribe((memento) =>
-        from(Array.from(memento.data))
-          .pipe(concatMap((text) => of(text).pipe(delay(100))))
-          .subscribe((c) => {
-            memento.node.data += c;
-          })
-      );
+      .subscribe(({ node, char }) => {
+        node.data += char;
+      });
   }
 
   gatherMementoMetaData() {
@@ -80,7 +81,7 @@ export class TypewriterDirective implements AfterViewInit {
     }
   }
 
-  analyzeChildNode(element: Node) {
+  analyzeChildNode(element: any) {
     if (element.nodeType === TypewriterDirective.TEXT_NODE_TYPE) {
       console.log('Found text, pushing: ' + element.data);
       let nodeLength = 0;
