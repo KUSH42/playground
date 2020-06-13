@@ -1,6 +1,6 @@
 div {
   color: var(--text-Color);
-  text-shadow: 0 0 4px var(--router-active);
+  text-shadow: 0 0 4px var(--text-Color);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.6) 40%,
@@ -14,4 +14,9 @@ div {
    height: 100%;
    top: 0;
    left: 0;
+}
+
+a {
+  color: var(--alternate-text-Color);
+  text-shadow: 0 0 4px var(--alternate-text-Color);
 }

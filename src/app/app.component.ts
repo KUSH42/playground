@@ -31,19 +31,21 @@ export class AppComponent implements OnDestroy, AfterViewInit {
         this._selectedColor = 'green';
         this.routerActive = this.routerActiveGreen;
         this.textColor = this.textColorGreen;
+        this.alternateTextColor = this.textColorBlue;
         break;
       }
       case 'blue': {
         this._selectedColor = 'blue';
         this.routerActive = this.routerActiveBlue;
         this.textColor = this.textColorBlue;
-
+        this.alternateTextColor = this.textColorGreen;
         break;
       }
       case 'red': {
         this._selectedColor = 'red';
         this.routerActive = this.routerActiveRed;
         this.textColor = this.textColorRed;
+        this.alternateTextColor = this.textColorBlue;
         break;
       }
       default: {
@@ -64,10 +66,12 @@ export class AppComponent implements OnDestroy, AfterViewInit {
   textColorRed = '#ff0005';
   textColor = this.textColorGreen;
 
+  alternateTextColor = this.textColorBlue;
+
   @HostBinding('attr.style')
   public get valueAsStyle(): any {
     return this.sanitizer.bypassSecurityTrustStyle(
-      `--router-active: ${this.routerActive}; --text-Color: ${this.textColor};`
+      `--router-active: ${this.routerActive}; --text-Color: ${this.textColor}; --alternate-text-Color: ${this.alternateTextColor};`
     );
   }
 
