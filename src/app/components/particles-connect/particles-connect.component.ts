@@ -51,6 +51,7 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
     particleCount: 250,
     color: '#00ff00',
   };
+  private colorController: dat.GUIController;
 
   private subscriptions: Subscription[] = [];
 
@@ -63,16 +64,19 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
       case 'green': {
         this._selectedColor = 'green';
         this.effectController.color = '#00ff00';
+        this.colorController.setValue('#00ff00');
         break;
       }
       case 'blue': {
         this._selectedColor = 'blue';
         this.effectController.color = '#0000ff';
+        this.colorController.setValue('#0000ff');
         break;
       }
       case 'red': {
         this._selectedColor = 'red';
         this.effectController.color = '#ff0000';
+        this.colorController.setValue('#ff0000');
         break;
       }
       default: {
@@ -86,7 +90,6 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(private _GlobalManagerSerice: GlobalManagerService) {
-    this._selectedColor = _GlobalManagerSerice.selectedColor;
   }
 
   ngAfterViewInit() {
@@ -133,7 +136,7 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
       this.maxParticleCount,
       1
     );
-    this.gui.addColor(this.effectController, 'color');
+    this.colorController = this.gui.addColor(this.effectController, 'color');
   }
 
   private initCamera() {
