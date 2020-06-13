@@ -63,19 +63,16 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
     switch (color.toLowerCase()) {
       case 'green': {
         this._selectedColor = 'green';
-        this.effectController.color = '#00ff00';
         this.colorController.setValue('#00ff00');
         break;
       }
       case 'blue': {
         this._selectedColor = 'blue';
-        this.effectController.color = '#0000ff';
         this.colorController.setValue('#0000ff');
         break;
       }
       case 'red': {
         this._selectedColor = 'red';
-        this.effectController.color = '#ff0000';
         this.colorController.setValue('#ff0000');
         break;
       }
