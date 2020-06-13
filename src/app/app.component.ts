@@ -53,6 +53,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
       }
     }
   }
+  get selectedColor() {
+    return this._selectedColor;
+  }
 
   private subscriptions: Subscription[] = [];
 
