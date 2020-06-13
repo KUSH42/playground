@@ -20,6 +20,7 @@ import { ParticleBannerComponent } from './particle-banner/particle-banner.compo
 import { HomeComponent } from './home/home.component';
 import { TypewriterDirective } from './typewriter.directive';
 import { MatrixComponent } from './matrix/matrix.component';
+import { BannerComponent } from './sidenav/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatrixComponent } from './matrix/matrix.component';
     ParticleBannerComponent,
     HomeComponent,
     TypewriterDirective,
-    MatrixComponent
+    MatrixComponent,
+    BannerComponent
   ],
   imports: [
     AppRoutingModule,
