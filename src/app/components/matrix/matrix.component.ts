@@ -6,7 +6,7 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-import { GlobalManagerService } from '../global-manager.service';
+import { GlobalManagerService } from '../../services/global-manager/global-manager.service';
 import { Subscription } from 'rxjs';
 
 @Component({

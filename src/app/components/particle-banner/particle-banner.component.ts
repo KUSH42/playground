@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import * as p5 from 'p5';
-import { GlobalManagerService } from '../global-manager.service';
+import { GlobalManagerService } from '../../services/global-manager/global-manager.service';
 import { Subscription } from 'rxjs';
 
 @Component({

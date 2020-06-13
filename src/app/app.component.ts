@@ -5,7 +5,7 @@ import {
   OnDestroy,
   AfterViewInit,
 } from '@angular/core';
-import { GlobalManagerService } from './global-manager.service';
+import { GlobalManagerService } from './services/global-manager/global-manager.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
