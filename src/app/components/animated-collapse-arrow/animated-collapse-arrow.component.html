@@ -9,12 +9,13 @@
   #tooltip="matTooltip"
   matTooltipHideDelay="500"
 >
-<div class="arrowGroup"
-[ngClass]="{
-  initLeft: this.expanded === true,
-  initRight: this.expanded === false
-}"
->
+  <div
+    class="arrowGroup"
+    [ngClass]="{
+      initLeft: this.expanded === true,
+      initRight: this.expanded === false
+    }"
+  >
     <div class="arrow"></div>
   </div>
   <div

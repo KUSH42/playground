@@ -1,41 +1,16 @@
-button {
-  width: 3em !important;
-  height: 3em !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-}
-
-.arrow {
-  width: 1em;
-  height: 1em;
-}
+/* ISSUE: CSS Variables are lost when running ng build --prod (https://github.com/angular/angular-cli/issues/16123) */
+/* All of the blocks below have to be ignored (even if not using vars), otherwise it'll cause problems with animation timing */
+/* clean-css ignore:start */
 .arrowSliding {
   position: absolute;
   left: 0em;
   -webkit-animation: slideRight 2.5s linear infinite;
   animation: slideRight 2.5s linear infinite;
 }
-.initRight {
-  position: absolute;
-  animation: slideRightInit 2s linear normal;
-  -webkit-animation: slideRightInit 2s linear normal;
-  border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent var(--router-active);
-  opacity: 0;
-}
-
 .arrowLeftSliding {
   position: absolute;
   -webkit-animation: slideLeft 2.5s linear infinite;
   animation: slideLeft 2.5s linear infinite;
-}
-.initLeft {
-  position: absolute;
-  animation: slideLeftInit 2s linear normal;
-  -webkit-animation: slideLeftInit 2s linear normal;
-  border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent var(--router-active);
-  opacity: 0;
 }
 
 .delay1 {
@@ -49,10 +24,10 @@ button {
   animation-delay: 1.5;
   -webkit-animation-delay: 1.5s;
   border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent var(--router-active);
+  border-color: var(--router-active) transparent transparent
+    var(--router-active);
   opacity: 0;
 }
-
 .delay3 {
   animation-delay: 2s;
   -webkit-animation-delay: 2s;
@@ -61,60 +36,91 @@ button {
   opacity: 0;
 }
 
+.initLeft {
+  position: absolute;
+  animation: slideLeftInit 2s linear normal;
+  -webkit-animation: slideLeftInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: var(--router-active) transparent transparent
+    var(--router-active);
+  opacity: 0;
+}
+.initRight {
+  position: absolute;
+  animation: slideRightInit 2s linear normal;
+  -webkit-animation: slideRightInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: var(--router-active) transparent transparent
+    var(--router-active);
+  opacity: 0;
+}
+/* clean-css ignore:end */
+
+button {
+  width: 3em !important;
+  height: 3em !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+.arrow {
+  width: 1em;
+  height: 1em;
+}
 
 @keyframes slideLeftInit {
   0% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
 }
 @-webkit-keyframes slideLeftInit {
   0% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(0.5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0.5em) translateY(-1em) rotate(-45deg);
   }
 }
 
 @keyframes slideLeft {
   0% {
     opacity: 0;
-    transform: translateX(5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(5em) translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(4em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(4em) translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
@@ -124,21 +130,21 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(0em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0em) translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(-1em) translateY(-1em) rotate(-45deg);
   }
 }
 @-webkit-keyframes slideLeft {
   0% {
     opacity: 0;
-    transform: translateX(5em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(5em) translateY(-1em) rotate(-45deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(4em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(4em) translateY(-1em) rotate(-45deg);
   }
   40% {
     opacity: 0;
@@ -148,68 +154,67 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(0em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(0em) translateY(-1em) rotate(-45deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1em)  translateY(-1em) rotate(-45deg);
+    transform: translateX(-1em) translateY(-1em) rotate(-45deg);
   }
 }
 
 @keyframes slideRightInit {
-    0% {
+  0% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRightInit {
   0% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1.5em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
   }
 }
-
 
 @keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-5.25em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-4.25em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -219,21 +224,21 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-0.25em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(1.25em) translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-5.25em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-4.25em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -243,10 +248,10 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(-0.25em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em)  translateY(-1em) rotate(135deg);
+    transform: translateX(1.25em) translateY(-1em) rotate(135deg);
   }
 }
