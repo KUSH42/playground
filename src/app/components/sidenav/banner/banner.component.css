@@ -2,7 +2,7 @@
   text-align: center;
   font-family: "Lucida Console", Arial, Helvetica, sans-serif;
   animation: pulse 8s ease alternate infinite;
-  color: #33ff00f0;
+  color: var(--text-Color);
 }
 .fadein {
   animation: fadein 3s ease-in alternate;
@@ -22,15 +22,15 @@
   0% {
     transform: translate(0.02em, 0.04em) scale(1.02) skew(-2deg) rotate(2deg);
     text-shadow: 0 0.3em 0.2em rgba(0, 0, 0, 0.3),
-      4px 8px 40px rgba(0, 255, 0, 1), 2px 2px 18px rgba(33, 255, 0, 0.9);
+      4px 8px 40px var(--text-Color), 2px 2px 18px var(--text-Color);
   }
   50% {
     text-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.3),
-      -10px 2px 50px rgba(33, 255, 0, 0.95), 2px 2px 16px rgba(0, 255, 0, 0.85);
+      -10px 2px 50px var(--text-Color), 2px 2px 16px var(--text-Color);
   }
   100% {
     transform: translate(-0.02em, -0.04em) scale(0.98) skew(2deg) rotate(-2deg);
     text-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.3),
-      6px -2px 40px rgba(11, 255, 0, 0.9), 2px 2px 14px rgba(11, 255, 0, 0.8);
+      6px -2px 40px var(--text-Color), 2px 2px 14px var(--text-Color);
   }
 }
