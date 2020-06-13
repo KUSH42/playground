@@ -9,15 +9,15 @@ import {
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Subscription } from 'rxjs';
+import { GlobalManagerService } from 'src/app/services/global-manager/global-manager.service';
 
 @Component({
   selector: 'app-particles-connect',
   templateUrl: './particles-connect.component.html',
   styleUrls: ['./particles-connect.component.css'],
 })
-
 export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
-
   @ViewChild('rendererContainer')
   private container: ElementRef;
 
@@ -49,10 +49,45 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
     limitConnections: false,
     maxConnections: 20,
     particleCount: 250,
-    color: 0x00ff00,
+    color: '#00ff00',
   };
 
-  constructor() {}
+  private subscriptions: Subscription[] = [];
+
+  private _selectedColor: string;
+  set selectedColor(color: string) {
+    if (color == null) {
+      return;
+    }
+    switch (color.toLowerCase()) {
+      case 'green': {
+        this._selectedColor = 'green';
+        this.effectController.color = '#00ff00';
+        break;
+      }
+      case 'blue': {
+        this._selectedColor = 'blue';
+        this.effectController.color = '#0000ff';
+        break;
+      }
+      case 'red': {
+        this._selectedColor = 'red';
+        this.effectController.color = '#ff0000';
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+
+  get selectedColor() {
+    return this._selectedColor;
+  }
+
+  constructor(private _GlobalManagerSerice: GlobalManagerService) {
+    this._selectedColor = _GlobalManagerSerice.selectedColor;
+  }
 
   ngAfterViewInit() {
     this.init();
@@ -61,6 +96,7 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.gui.destroy();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   private init() {
@@ -70,6 +106,13 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
     this.initScene();
     this.initParticles();
     this.initRenderer();
+
+    // subscribe to global color change
+    this.subscriptions.push(
+      this._GlobalManagerSerice.colorObservable.subscribe((color: string) => {
+        this.selectedColor = color;
+      })
+    );
 
     this.container.nativeElement.appendChild(this.renderer.domElement);
     window.addEventListener('resize', this.onWindowResize.bind(this), false);
@@ -94,13 +137,21 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
   }
 
   private initCamera() {
-    this.camera = new THREE.PerspectiveCamera(45, this.container.nativeElement.offsetWidth /
-      this.container.nativeElement.offsetHeight, 1, 4000);
+    this.camera = new THREE.PerspectiveCamera(
+      45,
+      this.container.nativeElement.offsetWidth /
+        this.container.nativeElement.offsetHeight,
+      1,
+      4000
+    );
     this.camera.position.z = 1750;
   }
 
   private initOrbitalControls() {
-    const controls = new OrbitControls(this.camera, this.container.nativeElement);
+    const controls = new OrbitControls(
+      this.camera,
+      this.container.nativeElement
+    );
     controls.minDistance = 1000;
     controls.maxDistance = 3000;
   }
@@ -112,7 +163,9 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
   }
 
   private initParticles() {
-    const helper = new THREE.BoxHelper(new THREE.Mesh(new THREE.BoxBufferGeometry(this.r, this.r, this.r)));
+    const helper = new THREE.BoxHelper(
+      new THREE.Mesh(new THREE.BoxBufferGeometry(this.r, this.r, this.r))
+    );
     (<any>helper.material).color.setHex(0x101010);
     (<any>helper.material).blending = THREE.AdditiveBlending;
     (<any>helper.material).transparent = true;
@@ -138,18 +191,35 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
       this.particlePositions[i * 3 + 2] = z;
       // add it to the geometry
       this.particlesData.push({
-        velocity: new THREE.Vector3(-1 + Math.random() * 2, -1 + Math.random() * 2, -1 + Math.random() * 2),
+        velocity: new THREE.Vector3(
+          -1 + Math.random() * 2,
+          -1 + Math.random() * 2,
+          -1 + Math.random() * 2
+        ),
         numConnections: 0,
       });
     }
     this.particles.setDrawRange(0, this.effectController.particleCount);
-    this.particles.setAttribute('position', new THREE.BufferAttribute(this.particlePositions, 3).setUsage(THREE.DynamicDrawUsage));
+    this.particles.setAttribute(
+      'position',
+      new THREE.BufferAttribute(this.particlePositions, 3).setUsage(
+        THREE.DynamicDrawUsage
+      )
+    );
     // create the particle system
     this.pointCloud = new THREE.Points(this.particles, pMaterial);
     this.group.add(this.pointCloud);
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3).setUsage(THREE.DynamicDrawUsage));
-    geometry.setAttribute('color', new THREE.BufferAttribute(this.colors, 3).setUsage(THREE.DynamicDrawUsage));
+    geometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(this.positions, 3).setUsage(
+        THREE.DynamicDrawUsage
+      )
+    );
+    geometry.setAttribute(
+      'color',
+      new THREE.BufferAttribute(this.colors, 3).setUsage(THREE.DynamicDrawUsage)
+    );
     geometry.computeBoundingSphere();
     geometry.setDrawRange(0, 0);
     const material = new THREE.LineBasicMaterial({
@@ -165,7 +235,10 @@ export class ParticlesConnectComponent implements AfterViewInit, OnDestroy {
   private initRenderer() {
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(this.container.nativeElement.offsetWidth, this.container.nativeElement.offsetHeight);
+    this.renderer.setSize(
+      this.container.nativeElement.offsetWidth,
+      this.container.nativeElement.offsetHeight
+    );
     this.renderer.outputEncoding = THREE.sRGBEncoding;
   }
 
