@@ -47,6 +47,8 @@
     <router-outlet> </router-outlet>
 
     <!-- Collapse/Expand-Button -->
+    <!-- Needs an ngIf-Implementation due to a bug in Chromium where containers disappear on fragment navigation:
+    https://bugs.chromium.org/p/chromium/issues/detail?id=288747 -->
     <app-animated-collapse-arrow
       class="buttonLeft"
       *ngIf="!settings.expanded"

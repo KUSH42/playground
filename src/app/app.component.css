@@ -4,6 +4,9 @@ body {
 }
 
 /** Collapse Button **/
+/** position: fixed behaviour is bugged on Chrome:
+https://github.com/angular/components/issues/3031
+https://bugs.chromium.org/p/chromium/issues/detail?id=20574 **/
 app-animated-collapse-arrow {
   position: fixed !important;
   bottom: 1em;
