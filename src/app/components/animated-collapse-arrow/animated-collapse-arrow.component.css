@@ -9,6 +9,7 @@
 }
 .arrowLeftSliding {
   position: absolute;
+  left: 0em;
   -webkit-animation: slideLeft 2.5s linear infinite;
   animation: slideLeft 2.5s linear infinite;
 }
@@ -61,6 +62,11 @@ button {
   height: 3em !important;
   min-width: 0 !important;
   padding: 0 !important;
+}
+.buttonRight {
+  position: absolute;
+  left: -0.25em !important;
+  bottom: 0;
 }
 
 .arrow {
@@ -165,56 +171,56 @@ button {
 @keyframes slideRightInit {
   0% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRightInit {
   0% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 1;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   80% {
     opacity: 1;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(-1.5em) translateY(-1em) rotate(135deg);
+    transform: translateX(-1em) translateY(-1em) rotate(135deg);
   }
 }
 
 @keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(-5em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(-4em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -224,21 +230,21 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(0em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(1em) translateY(-1em) rotate(135deg);
   }
 }
 @-webkit-keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-5.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(-5em) translateY(-1em) rotate(135deg);
   }
   20% {
     opacity: 0;
-    transform: translateX(-4.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(-4em) translateY(-1em) rotate(135deg);
   }
   40% {
     opacity: 0;
@@ -248,10 +254,10 @@ button {
   }
   80% {
     opacity: 1;
-    transform: translateX(-0.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(0em) translateY(-1em) rotate(135deg);
   }
   100% {
     opacity: 0;
-    transform: translateX(1.25em) translateY(-1em) rotate(135deg);
+    transform: translateX(1em) translateY(-1em) rotate(135deg);
   }
 }

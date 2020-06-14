@@ -8,6 +8,9 @@
   matTooltip="Expand"
   #tooltip="matTooltip"
   matTooltipHideDelay="500"
+  [ngClass]="{
+    buttonRight: this.expanded === false
+  }"
 >
   <div
     class="arrowGroup"
