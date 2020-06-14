@@ -129,6 +129,18 @@ export class GlobeComponent implements AfterViewInit {
     return this._selectedColor;
   }
 
+  private onWindowResize() {
+    this.camera.orbitControls.aspect =
+      this.container.nativeElement.offsetWidth /
+      this.container.nativeElement.offsetHeight;
+    this.camera.orbitControls.updateProjectionMatrix();
+
+    this.renderer.setSize(
+      this.container.nativeElement.offsetWidth,
+      this.container.nativeElement.offsetHeight
+    );
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
@@ -149,7 +161,7 @@ export class GlobeComponent implements AfterViewInit {
       antialias: true,
     });
     this.renderer.setSize(this.width, this.height);
-
+    window.addEventListener('resize', this.onWindowResize.bind(this), false);
 
     this.setupGlobe();
     this.setupOrbitControls();
