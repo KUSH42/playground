@@ -9,6 +9,9 @@
       <a mat-list-item routerLink="/">
         <app-banner></app-banner>
       </a>
+      <a mat-list-item routerLink="/globe" routerLinkActive="router-active"
+        >Globe</a
+      >
       <a mat-list-item routerLink="/matrix" routerLinkActive="router-active"
         >Matrix</a
       >
@@ -61,5 +64,4 @@
       (collapseButtonClick)="onCollapseButtonClick($event)"
     ></app-animated-collapse-arrow>
   </div>
-
 </mat-sidenav-container>

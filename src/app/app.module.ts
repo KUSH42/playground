@@ -20,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TypewriterDirective } from './directives/typewriter/typewriter.directive';
 import { MatrixComponent } from './components/matrix/matrix.component';
 import { BannerComponent } from './components/sidenav/banner/banner.component';
+import { GlobeComponent } from './components/globe/globe.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BannerComponent } from './components/sidenav/banner/banner.component';
     HomeComponent,
     TypewriterDirective,
     MatrixComponent,
-    BannerComponent
+    BannerComponent,
+    GlobeComponent
   ],
   imports: [
     AppRoutingModule,
