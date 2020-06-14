@@ -1,6 +1,5 @@
 /* ISSUE: CSS Variables are lost when running ng build --prod (https://github.com/angular/angular-cli/issues/16123) */
-/* All of the blocks below have to be ignored (even if not using vars), otherwise it'll cause problems with animation timing */
-/* clean-css ignore:start */
+/* Workaround: set arrow color using ngClass */
 .arrowSliding {
   position: absolute;
   left: 0em;
@@ -14,6 +13,76 @@
   animation: slideLeft 2.5s linear infinite;
 }
 
+.initLeftBlue {
+  position: absolute;
+  animation: slideLeftInit 2s linear normal;
+  -webkit-animation: slideLeftInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #0033ff transparent transparent #0033ff;
+  opacity: 0;
+}
+.initRightBlue {
+  position: absolute;
+  animation: slideRightInit 2s linear normal;
+  -webkit-animation: slideRightInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #0033ff transparent transparent #0033ff;
+  opacity: 0;
+}
+.delay2Blue {
+  animation-delay: 1.5;
+  -webkit-animation-delay: 1.5s;
+  border: 0.5em solid;
+  border-color: #0033ff transparent transparent #0033ff;
+  opacity: 0;
+}
+.initLeftRed {
+  position: absolute;
+  animation: slideLeftInit 2s linear normal;
+  -webkit-animation: slideLeftInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #ff0005 transparent transparent #ff0005;
+  opacity: 0;
+}
+.initRightRed {
+  position: absolute;
+  animation: slideRightInit 2s linear normal;
+  -webkit-animation: slideRightInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #ff0005 transparent transparent #ff0005;
+  opacity: 0;
+}
+.delay2Red {
+  animation-delay: 1.5;
+  -webkit-animation-delay: 1.5s;
+  border: 0.5em solid;
+  border-color: #ff0005 transparent transparent #ff0005;
+  opacity: 0;
+}
+.initLeftGreen {
+  position: absolute;
+  animation: slideLeftInit 2s linear normal;
+  -webkit-animation: slideLeftInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #33ff00 transparent transparent #33ff00;
+  opacity: 0;
+}
+.initRightGreen {
+  position: absolute;
+  animation: slideRightInit 2s linear normal;
+  -webkit-animation: slideRightInit 2s linear normal;
+  border: 0.5em solid;
+  border-color: #33ff00 transparent transparent #33ff00;
+  opacity: 0;
+}
+.delay2Green {
+  animation-delay: 1.5;
+  -webkit-animation-delay: 1.5s;
+  border: 0.5em solid;
+  border-color: #33ff00 transparent transparent #33ff00;
+  opacity: 0;
+}
+
 .delay1 {
   animation-delay: 1s;
   -webkit-animation-delay: 1s;
@@ -21,14 +90,7 @@
   border-color: #1a1a1a88 transparent transparent #1a1a1a88;
   opacity: 0;
 }
-.delay2 {
-  animation-delay: 1.5;
-  -webkit-animation-delay: 1.5s;
-  border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent
-    var(--router-active);
-  opacity: 0;
-}
+
 .delay3 {
   animation-delay: 2s;
   -webkit-animation-delay: 2s;
@@ -36,26 +98,6 @@
   border-color: #1a1a1a88 transparent transparent #1a1a1a88;
   opacity: 0;
 }
-
-.initLeft {
-  position: absolute;
-  animation: slideLeftInit 2s linear normal;
-  -webkit-animation: slideLeftInit 2s linear normal;
-  border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent
-    var(--router-active);
-  opacity: 0;
-}
-.initRight {
-  position: absolute;
-  animation: slideRightInit 2s linear normal;
-  -webkit-animation: slideRightInit 2s linear normal;
-  border: 0.5em solid;
-  border-color: var(--router-active) transparent transparent
-    var(--router-active);
-  opacity: 0;
-}
-/* clean-css ignore:end */
 
 button {
   width: 3em !important;

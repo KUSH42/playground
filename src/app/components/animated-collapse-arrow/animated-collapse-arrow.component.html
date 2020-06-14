@@ -15,8 +15,12 @@
   <div
     class="arrowGroup"
     [ngClass]="{
-      initLeft: this.expanded === true,
-      initRight: this.expanded === false
+      initLeftGreen: (this.expanded === true) && this.selectedColor === 'green',
+      initRightGreen: (this.expanded === false) && this.selectedColor === 'green',
+      initLeftRed: (this.expanded === true) && this.selectedColor === 'red',
+      initRightRed: (this.expanded === false) && this.selectedColor === 'red',
+      initLeftBlue: (this.expanded === true) && this.selectedColor === 'blue',
+      initRightBlue: (this.expanded === false) && this.selectedColor === 'blue'
     }"
   >
     <div class="arrow"></div>
@@ -33,7 +37,10 @@
   <div
     [ngClass]="{
       arrowLeftSliding: this.expanded === true,
-      arrowRightSliding: this.expanded === false
+      arrowRightSliding: this.expanded === false,
+      delay2Green: this.selectedColor === 'green',
+      delay2Blue: this.selectedColor === 'blue',
+      delay2Red: this.selectedColor === 'red'
     }"
     class="delay2 arrowSliding"
   >
