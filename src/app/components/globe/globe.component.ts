@@ -130,10 +130,11 @@ export class GlobeComponent implements AfterViewInit {
   }
 
   private onWindowResize() {
-    this.camera.orbitControls.aspect =
+    this.camera.object.aspect =
       this.container.nativeElement.offsetWidth /
       this.container.nativeElement.offsetHeight;
-    this.camera.orbitControls.updateProjectionMatrix();
+
+    this.camera.object.updateProjectionMatrix();
 
     this.renderer.setSize(
       this.container.nativeElement.offsetWidth,
