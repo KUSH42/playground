@@ -25,7 +25,6 @@ export class GlobeComponent implements AfterViewInit {
   private globeWidth = 4098 / 2;
   private globeHeight = 1968 / 2;
 
-  // A group to hold everything
   private groups = {
     globe: null,
     globePoints: null,
@@ -55,7 +54,7 @@ export class GlobeComponent implements AfterViewInit {
     },
   };
 
-  // Visual state
+  // visual state
   private state = {
     targets: [
       {
@@ -93,7 +92,7 @@ export class GlobeComponent implements AfterViewInit {
     previousTargetIndex: null,
     isGlobeAnimating: true,
 
-    // Property to save setInterval id to auto rotate the globe every n seconds
+    // property to save setInterval id to auto rotate the globe every n seconds
     autoRotateGlobeTimer: null,
   };
 
@@ -169,7 +168,7 @@ export class GlobeComponent implements AfterViewInit {
     this.setupAutoRotate();
     this.render();
 
-    // Subscribe to global color change
+    // subscribe to global color change
     this.subscriptions.push(
       this._GlobalManagerSerice.colorObservable.subscribe((color: string) => {
         this.selectedColor = color;
@@ -200,7 +199,6 @@ export class GlobeComponent implements AfterViewInit {
     this.globe = new THREE.Mesh(geometry, material);
 
     this.groups.globe = this.globe;
-    this.groups.globe.name = 'Globe';
 
     this.scene.add(this.groups.globe);
 
@@ -209,32 +207,28 @@ export class GlobeComponent implements AfterViewInit {
 
   private addPoints() {
     const mergedGeometry = new THREE.Geometry();
-    // The geometry that will contain all of our points.
+    // geometry that contains all pings
     const pingGeometry = new THREE.SphereGeometry(0.5, 5, 5);
-    // The material that our ping will be created from.
+    // ping material
     const material = new THREE.MeshBasicMaterial({
       color: this._selectedColor,
       opacity: 0.5,
     });
 
     for (let point of this.data.points) {
-      // Transform our latitude and longitude values to points on the sphere.
+      // transform latitude/longitude values to points on the sphere
       const pos = this.convertFlatCoordsToSphereCoords(point.x, point.y);
 
+      // merge into single mesh
       if (pos.x && pos.y && pos.z) {
-        // Position ping item.
         pingGeometry.translate(pos.x, pos.y, pos.z);
-        // Merge ping item onto our mergedGeometry object.
         mergedGeometry.merge(pingGeometry);
-        // Reset ping item position.
         pingGeometry.translate(-pos.x, -pos.y, -pos.z);
       }
     }
+    const merged = new THREE.Mesh(mergedGeometry, material);
 
-    // We end up with 1 mesh to add to the scene rather than our (n) number of points.
-    const total = new THREE.Mesh(mergedGeometry, material);
-    this.groups.globePoints = total;
-    this.groups.globePoints.name = 'Globe Points';
+    this.groups.globePoints = merged;
     this.scene.add(this.groups.globePoints);
   }
 
@@ -296,7 +290,7 @@ export class GlobeComponent implements AfterViewInit {
 
   private animate() {
     if (this.state.isGlobeAnimating) {
-      // Update azimuthal and polar angles
+      // update azimuthal and polar angles
       this.animateGlobeToNextLocation()
       this.camera.orbitControls.update();
       return;
@@ -341,8 +335,9 @@ export class GlobeComponent implements AfterViewInit {
     // Convert latitude and longitude on the 90/180 degree axis
     let latitude = ((x - this.globeWidth) / this.globeWidth) * -180;
     let longitude = ((y - this.globeHeight) / this.globeHeight) * -90;
-    latitude = (latitude * Math.PI) / 180; //(latitude / 180) * Math.PI
-    longitude = (longitude * Math.PI) / 180; //(longitude / 180) * Math.PI
+    latitude = (latitude * Math.PI) / 180;
+    longitude = (longitude * Math.PI) / 180;
+
     // Calculate projected starting point
     const radius = Math.cos(longitude) * this.globeRadius;
     const targetX = Math.cos(latitude) * radius;
@@ -356,7 +351,7 @@ export class GlobeComponent implements AfterViewInit {
   }
 
   private convertLatLngToFlatCoords(latitude, longitude) {
-    // Reference: https://stackoverflow.com/questions/7019101/convert-pixel-location-to-latitude-longitude-vise-versa
+    // see: https://stackoverflow.com/questions/7019101/convert-pixel-location-to-latitude-longitude-vise-versa
     const x = Math.round((longitude + 180) * (this.globeWidth / 360)) * 2;
     const y = Math.round((-1 * latitude + 90) * (this.globeHeight / 180)) * 2;
     return { x, y };
@@ -378,7 +373,7 @@ export class GlobeComponent implements AfterViewInit {
     };
   }
 
-  // Returns an object of the azimuthal and polar angles of a given a points x,y coord on the globe
+  // Returns an object of the azimuthal and polar angles of points x,y
   private returnCameraAngles(x, y) {
     let targetAzimuthalAngle =
       ((x - this.globeWidth) / this.globeWidth) * Math.PI;
